@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>hello</title>
+</head>
+<body>
+    <div id="divTip"></div>
+    <script src="asset/jquery-3.4.1.min.js"></script>
+    <script src="asset/underscore.js"></script>
+    <script src="asset/backbone.js"></script>
+    <script>
+        $(function(){
+            // 定义模型类
+            window.Test = Backbone.Model.extend({
+                defaults:{
+                    content:''
+                }
+            })
+            // 创建集合模式类
+            window.TestList = Backbone.Collection.extend({
+                model:Test
+            })
+            // 向模型添加数据
+            var data = new TestList({
+                content:'hello,backbone'
+            })
+            // 创建View对象
+            window.TestView = Backbone.View.extend({
+                el:$("body"),
+                initialize:function(){
+                    $('#divTip').html(data.models[0].get("content"))
+                }
+            })
+            // 实例化View对象
+            window.App = new TestView
+
+        })
+    </script>
+</body>
+</html>

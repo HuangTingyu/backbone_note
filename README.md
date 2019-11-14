@@ -1,85 +1,29 @@
-# backbone_note
-backbone.js学习笔记
+## backbone特点
 
-### 几个重要的概念
+#### 1.继承特性
 
-Model，Collection，View，Router
+通过backbone不仅可以，以面向对象的方式编写自己的数据，集合，视图模型，而且这些模型都具有可继承性。这使得开发人员可以方便的重载这些模型和扩展一些一些自定义的属性和方法。
 
-Model是数据，Collection是Model的一个集合，View是对Model和Collection中数据的集中展示，把数据渲染到页面上，Router是对路由的处理。
+#### 2.事件统一管理
 
-界面上的操作引起model中属性的变化时，model中属性变化时，会重新渲染新的数据到界面。
-
-### demo解析
-
-1.model部分
-
-```js
-World = Backbone.Model.extend({
-     //创建一个World的对象，拥有name属性
-     name: null
-});
+```
+events:{
+  'click #btnAdd' : 'btnAdd_Click'
+}
 ```
 
-2.collection部分，给每一个world对象，绑定一个add事件，add事件具体定义，见 `addOneWorld` 方法。
+上述代码中，“events" 为事件声明，”click"表示元素绑定的事件名称，“#btnAdd" 表示页面中共ID为 ”btnAdd"的元素，“btnAdd_Click" 表示事件触发时所执行的函数名称。
 
-```js
-Worlds = Backbone.Collection.extend({
-       //World对象的集合
-       initialize: function(models, options) {
-            this.bind("add", options.view.addOneWorld);
-   }
-});
-```
+#### 3.绑定页面模板
 
-addOneWorld的定义，在View部分
+Backbone可以直接调用页面中的HTML模板，这样的好处，一是可以在HTML模板中嵌入js代码，无需在动态生成HTML元素时拼接字符串，而是可以在视图中管理页面中的模板，定义多套HTML页面模板。
 
-```js
-AppView = Backbone.View.extend({
-                addOneWorld: function(model) {
-                    $("#world-list").append("<li>这里是来自 <b>" + model.get('name') + "</b> 星球的问候：hello world！</li>");
-                }
-            });
-```
+#### 4.自动同步服务端
 
-3.view部分，进入页面的时候，先初始化一个worlds集合。
+backbone内部，有一整套与服务器数据自动同步的机制，通过这套机制，用户只需关注客户端的操作，执行完操作后数据会在模型类中自动同步到服务器。
 
-```js
-AppView = Backbone.View.extend({
-                el: $("body"),
-                initialize: function() { //构造函数，实例化一个World集合类
-                    //并且以字典方式传入AppView的对象
-                    this.worlds = new Worlds(null, {
-                        view: this
-                    })
-                },
-```
+##Underscore总结
 
-然后，
+### 事件模块
 
-```js
-AppView = Backbone.View.extend({
-                el: $("body"),
-                events: { //事件绑定，绑定Dom中id为check的元素
-                    "click #check": "checkIn",
-                },
-                checkIn: function() {
-                    var world_name = prompt("请问，您是哪星人?");
-                    if (world_name == "") world_name = '未知';
-                    var world = new World({
-                        name: world_name
-                    });
-                    this.worlds.add(world);
-                },
-            }); //实例化AppView
-            var appview = new AppView;
-```
-
-这里面的，
-
-```js
-var world = new World({ name: world_name });
-```
-
-
-
-### 
+事件模块Backbone.Events在Backbone中占有十分重要的地位，其他模块Model、Collection、View所有事件模块都依赖于它。

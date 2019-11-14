@@ -89,3 +89,10 @@ backbone内部，有一整套与服务器数据自动同步的机制，通过这
 4. 实例化`View` 类，即 `window.App = new TestView` 
 
    执行上述代码，View类中的initialize函数将被自动执行，最终 `hello,backbone` 被填充到 `<div id="divTip"></div>` 中。
+
+## backbone事件方法
+
+详细见 —— `note\eventBind`
+
+
+

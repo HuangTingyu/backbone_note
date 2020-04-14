@@ -1,6 +1,5 @@
 var $ = require('jquery')
-var _ = require('underscore')
-var Backbone = require('backbone')
+
 var hello = $(function(){
     // 定义模型类
     window.Test = Backbone.Model.extend({

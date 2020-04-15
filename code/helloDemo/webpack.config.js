@@ -45,6 +45,10 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({template:'./src/index.html'}),
+    new webpack.ProvidePlugin({
+      $:'jquery',
+      _:'lodash'
+    }),
     new CleanWebpackPlugin(),
     new webpack.HotModuleReplacementPlugin()
   ]

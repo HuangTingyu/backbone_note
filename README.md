@@ -72,23 +72,31 @@ backbone内部，有一整套与服务器数据自动同步的机制，通过这
 
 定义模型的顺序 —— 
 
-1. 通过extend方法，定义`Model` 层模型类 Test
+1. 模型类(Backbone.Model.extend) Test
 
-   在该模型类中，使用 ` defaults` 方式设置模型实例化时，将复制默认数据 ”content"。 通常，默认数据为空，实例化模型时，才真正被实参取代。
+   使用 ` defaults` 方式设置模型实例化时，将复制默认数据 ”content"。 通常，默认数据为空，实例化模型时，才真正被实参取代。
 
-2. `Collection`层集合类 TestList"
+2. 集合类 (Backbone.Collection.extend) TestList
 
-   该集合类中，使用 `model` 方式声明该集合类继承了 `Model` 类 Test"。然后，`var data = new TestList` 实例化一个集合类对象 data。
+   该集合类继承了模型类 Test。
 
-3. `View` 层视图类 TestView
+   `var data = new TestList` 实例化一个集合类对象 data。
 
-   在该视图类中，将 `el` 属性设置为 `$("body")`，表明是针对整个页面元素部分；
+3. 视图类(Backbone.View.extend) TestView
 
-   接下来在定义的 `initialize` 函数中，通过get方式获取集合对象data中content数据项的值，即 `hello,backbone`，最后显示在ID为"divTip" 的页面元素中。
+    `initialize` 函数，通过get方式获取集合对象data中content数据项的值.
 
 4. 实例化`View` 类，即 `window.App = new TestView` 
 
-   执行上述代码，View类中的initialize函数将被自动执行，最终 `hello,backbone` 被填充到 `<div id="divTip"></div>` 中。
+   执行上述代码，View类中的initialize函数将被自动执行。
+
+5. 执行结果
+
+ `hello,backbone` 被填充到 `<div id="divTip"></div>` 中。
+
+### Underscore简单练习
+
+详细见 —— `note\Underscore`
 
 ## backbone事件方法
 

@@ -1,4 +1,4 @@
-var $ = require('jquery')
+// var $ = require('jquery')
 
 var hello = $(function(){
     // 定义模型类

@@ -61,5 +61,8 @@ var groupSeries = _.groupBy(series, function(n){
     return n.score > 7
 })
 for(var gt in groupSeries["true"]){
-    console.log(groupSeries["true"][gt])
+    // console.log(groupSeries["true"][gt])
 }
+
+var seriesFirst = _.first(series)
+// console.log(seriesFirst)

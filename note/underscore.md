@@ -117,8 +117,8 @@ var maxInList = _.max([60, 40, 80])
 ```js
 var series = [
     {name : '枕上书', score: 6.6},
-    {name : '香蜜', score : 8},
-    {name : '龙岭迷窟', score : 8.2}
+    {name : '龙岭迷窟', score : 8.2},
+    {name : '香蜜', score : 8}
 ]
 var min = _.min(series, function(n){
     return n.score
@@ -169,3 +169,33 @@ for(var gt in groupSeries["true"]){
 {name: "香蜜", score: 8}
 ```
 
+#### 5.first和last
+
+_.fist(array, n)
+
+n默认是1，返回数组第一个元素。如果传入n，那么返回一个新数组，数组前n项元素组成。
+
+```
+var seriesFirst = _.first(series)
+console.log(seriesFirst)
+// 输出 {name: "枕上书", score: 6.6}
+```
+
+_.last(array, n)，返回数组最后一个元素。参数n的作用同上。
+
+### 数组
+
+#### indexOf和lastIndexOf
+
+indexOf（array, value），查找元素首次出现的位置，不存在返回-1。
+
+区别于find，find可以接回调函数，找到满足条件的元素并返回。indexOf主要是，查元素位置。
+
+```
+var arr = ['胖迪','凤九','东华','凤九']
+var iphone9 = _.indexOf(arr, '凤九')
+console.log(iphone9)
+// 输出 1
+```
+
+lastIndexOf，查找元素最后一次出现的位置，不存在返回-1

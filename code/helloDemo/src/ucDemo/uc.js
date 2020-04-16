@@ -1,2 +1,3 @@
 // require('./ucDemo')
-require('./ucCollection')
+// require('./ucCollection')
+require('./ucArray')

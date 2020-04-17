@@ -199,3 +199,75 @@ console.log(iphone9)
 ```
 
 lastIndexOf，查找元素最后一次出现的位置，不存在返回-1
+
+#### without
+
+_.without(array, [*value])
+
+返回一个不包含value的数组
+
+```js
+console.log(_.without([4,6,8,12,4,40],4,40))
+// 输出 [6, 8, 12]
+```
+
+#### union
+
+将数组进行合并重组
+
+```js
+console.log(_.union([92,6,3],[83,1,16]))
+// 输出 [92, 6, 3, 83, 1, 16]
+```
+
+### 函数
+
+#### delay
+
+相当于setTimeout，延迟输出。
+
+_.delay(function, wait, [*argument])
+
+```
+var delayFun = function(v){
+    console.log('我现在正在'+v)
+}
+_.delay(delayFun,5000,"coding")
+```
+
+#### once
+
+once函数仅执行一次，再次执行无效
+
+```
+var onceFun = _.once(function(){
+    console.log("半生疏离，一世知己")
+})
+```
+
+#### wrap
+
+将自定义函数作为参数传入
+
+```
+var input = function (n, s){
+    return s ? n + "先生" : n + "女士"
+}
+wrapFun = _.wrap(input, function(input){
+    return '你好，' + input("迪丽热巴", 0) 
+})
+console.log(wrapFun())
+```
+
+#### flow
+
+组合调用函数，将前一个函数的输出，作为下一个函数的输入。类似管道符。
+
+```
+var plusFun = function(n){
+    return n * n
+}
+
+console.log(_.flow(_.add, plusFun)(2, 3))
+```
+

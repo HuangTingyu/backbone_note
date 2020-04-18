@@ -271,3 +271,50 @@ var plusFun = function(n){
 console.log(_.flow(_.add, plusFun)(2, 3))
 ```
 
+### 对象
+
+#### keys和values
+
+keys获取由key值组成的数组
+
+values获取由value值组成的数组
+
+```js
+var dlrb = {
+    name:"迪丽热巴",
+    info:"一只默默热爱表演的小透明",
+    weibo:"Dear-迪丽热巴"
+}
+
+var keysArr = _.keys(dlrb)
+var valuesArr = _.values(dlrb)
+
+console.log(keysArr, valuesArr)
+// 输出 ["name", "info", "weibo"] 
+// 输出  ["迪丽热巴", "一只默默热爱表演的小透明", "Dear-迪丽热巴"]
+```
+
+#### pick和omit
+
+挑选和排除对象中的键值，返回一个新对象
+
+```js
+console.log(_.pick(dlrb,'name','info'))
+console.log(_.omit(dlrb,'weibo'))
+// 输出 {name: "迪丽热巴", info: "一只默默热爱表演的小透明"}
+```
+
+#### has
+
+_.has(object, key)
+
+返回true或者false，对象中是否包含对应的key值
+
+```
+if (_.has(dlrb, 'weibo')){
+    console.log('迪丽热巴的微博——@' + dlrb.weibo)
+} else {
+    console.log('dd88没有微博')
+}
+```
+

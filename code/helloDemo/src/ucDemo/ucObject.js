@@ -13,7 +13,7 @@ var valuesArr = _.values(dlrb)
 // console.log(_.omit(dlrb,'weibo'))
 
 if (_.has(dlrb, 'weibo')){
-    console.log('迪丽热巴的微博——@' + dlrb.weibo)
+    console.log('迪丽热巴的微博 —— @' + dlrb.weibo)
 } else {
     console.log('dd88没有微博')
 }

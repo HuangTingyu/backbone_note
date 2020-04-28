@@ -73,3 +73,33 @@ man.set("age", 28)
 // 默认值change
 ```
 
+#### 绑定多个事件
+
+例子 ——
+
+```js
+var man = new person()
+var objEvent = {
+    "change:score": score_change,
+    "change:age": age_change
+}
+man.on(objEvent)
+function score_change (model, value){
+    var oldscore = model.previous("score")
+    if (value > oldscore){
+        console.log("Congratulation! Your score is "+ value +".")
+    }
+}
+function age_change (model, value){
+    var objAttr = model.previousAttributes()
+    var oldage = objAttr.age
+    if (value > oldage){
+        console.log("Happy "+ value +"th birthday to you!")
+    }
+}
+man.set({"age":28, "score": 90})
+```
+
+调用模型对象man的on方法，绑定哈希型对象objEvent，从而完成对象多事件的绑定。
+
+调用模型对象man的set方法，重置对象的age和score两个属性值

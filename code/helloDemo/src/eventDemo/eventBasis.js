@@ -35,5 +35,5 @@ man.on("change:age", function (model, value){
         console.log("Happy birthday to you!")
     }
 })
-man.set("score", 90)
-man.set("age", 28)
+// man.set("score", 90)
+// man.set("age", 28)

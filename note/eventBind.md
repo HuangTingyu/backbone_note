@@ -1,5 +1,7 @@
 ## backbone事件绑定
 
+## Model模块事件绑定
+
 ### on方法
 
 Obj.on(eventName,function,[context])
@@ -193,4 +195,61 @@ man.off()
 man.trigger(objEvent)
 // 没有输出
 ```
+
+### listenTo
+
+Obj1.listenTo(Obj2, EventName, function)
+
+参数Obj1、Obj2都为对象。
+
+例子 ——
+
+```js
+var man = new person ()
+var obj = _.extend({}, Backbone.Events)
+obj.listenTo(man, "change:age", function(model, value){
+    var oldage = model.previous("age")
+    var now = model.get("age")
+    if (oldage != now) {
+        console.log("age " + oldage + " 已更改为 " + now)
+    }
+})
+man.set("age", 28)
+```
+
+### listenToOnce
+
+Obj1.listenToOnce(Obj2, EventName, function)
+
+事件只触发一次
+
+### stopListening
+
+Obj1.stopListening(Obj2, EventName, function)
+
+停止监听事件
+
+用法1 —— 
+
+停止监听 `change:age`
+
+```
+obj.stopListening(man, "change:age")
+```
+
+用法2 ——
+
+停止监听所有事件
+
+```
+obj.stopListening()
+```
+
+### all
+
+Obj.on("all", function)
+
+触发所有绑定事件
+
+## View模块事件绑定
 

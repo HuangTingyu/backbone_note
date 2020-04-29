@@ -1,7 +1,7 @@
-var path = require('path');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var { CleanWebpackPlugin } = require('clean-webpack-plugin');
-var webpack = require('webpack');
+var path = require('path')
+var HtmlWebpackPlugin = require('html-webpack-plugin')
+var { CleanWebpackPlugin } = require('clean-webpack-plugin')
+var webpack = require('webpack')
 
 
 module.exports = {
@@ -35,6 +35,11 @@ module.exports = {
           'css-loader',
           'postcss-loader'
         ]
+    },{
+      test:/\.art$/,
+      use: {
+        loader:'art-template-loader'
+      }
     }
   ]
 },
@@ -52,4 +57,4 @@ module.exports = {
     new CleanWebpackPlugin(),
     new webpack.HotModuleReplacementPlugin()
   ]
-};
+}

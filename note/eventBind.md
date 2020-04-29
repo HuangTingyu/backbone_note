@@ -73,7 +73,7 @@ man.set("age", 28)
 // 默认值change
 ```
 
-#### 绑定多个事件
+### 绑定多个事件
 
 例子 ——
 
@@ -103,3 +103,94 @@ man.set({"age":28, "score": 90})
 调用模型对象man的on方法，绑定哈希型对象objEvent，从而完成对象多事件的绑定。
 
 调用模型对象man的set方法，重置对象的age和score两个属性值
+
+### once
+
+Obj.once(eventName,function,[context])
+
+once绑定的事件，只能执行一次。
+
+### trigger
+
+Obj.trigger(eventName)
+
+trigger 可以手动触发事件，包括自定义事件。
+
+```js
+var man = new person()
+// 自定义事件
+man.on("change_age", function(){
+    console.log("trigger")
+})
+man.on("change:age", function (model, value){
+    if (value != undefined){
+        console.log("age change for" + value)
+    } else {
+        console.log("trigger")
+    }
+})
+man.trigger("change_age")
+man.trigger("change:age")
+man.set("age", 28)
+
+// 输出
+// trigger
+// trigger
+// age change for 28
+```
+
+### off
+
+Obj.off(eventName,function,[context])
+
+off 解绑事件
+
+obj.off() 不传入参数时，解绑所有事件。
+
+例子 1——
+
+```js
+var person = Backbone.Model.extend({
+    defaults:{
+        name:"",
+        sex:"女",
+        score:80,
+        age:27
+    }
+})
+var man = new person()
+var m = 0, n = 0
+var callbackA = function () {
+    m++
+    console.log("A函数运行次数 " + m )
+}
+
+var callbackB = function () {
+    n++
+    console.log("B函数执行次数 " + n)
+}
+var objEvent = {
+    "eventA" : callbackA,
+    "eventB" : callbackB
+}
+man.on(objEvent)
+
+// 解绑A事件
+man.off("eventA")
+man.trigger(objEvent)
+// 解绑哈希对象中所有事件
+man.off(objEvent)
+man.trigger(objEvent)
+
+// 输出
+// B函数执行次数 1
+```
+
+上面的代码用obj.off() 改写
+
+```js
+man.off()
+man.trigger(objEvent)
+// 没有输出
+```
+

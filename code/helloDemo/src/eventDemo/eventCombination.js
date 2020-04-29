@@ -25,4 +25,5 @@ function age_change (model, value){
         console.log("Happy "+ value +"th birthday to you!")
     }
 }
-man.set({"age":28, "score": 90})
+
+// man.set({"age":28, "score": 90})

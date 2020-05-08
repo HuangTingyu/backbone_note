@@ -1,6 +1,7 @@
+require('../../scss/viewEvent.css')
 var render = require('./viewEvent.art')
 var html = render()
-$('body').append(html)
+$('#root').after(html)
 
 var InfoView = Backbone.View.extend({
     el:'#view',

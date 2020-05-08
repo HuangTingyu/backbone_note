@@ -1,4 +1,4 @@
-require('../../scss/viewEvent.css')
+require('../../css/viewEvent.css')
 var render = require('./viewEvent.art')
 var html = render()
 $('#root').after(html)
@@ -6,9 +6,14 @@ $('#root').after(html)
 var InfoView = Backbone.View.extend({
     el:'#view',
     events: {
-        'click .btn' : 'showInfo'
+        'click .btnHide' : 'hideInfo',
+        'click .btnShow' : 'showInfo'
     },
-    ShowInfo: function () {
-        $('.viewport')
+    showInfo: function () {
+        $('.viewport').show()
+    },
+    hideInfo: function () {
+        $('.viewport').hide()
     }
 })
+var view = new InfoView()

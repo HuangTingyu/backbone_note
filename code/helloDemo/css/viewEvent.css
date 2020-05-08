@@ -1,3 +1,12 @@
 #root{
     font-weight: 700;
 }
+#view button{
+    margin: 10px;
+}
+.viewport{
+    width: 50px;
+    height: 50px;
+    background-color: #eee;
+    margin:10px;
+}

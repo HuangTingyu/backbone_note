@@ -253,3 +253,35 @@ Obj.on("all", function)
 
 ## View模块事件绑定
 
+举例 ——
+
+```js
+require('../../css/viewEvent.css')
+var render = require('./viewEvent.art')
+var html = render()
+$('#root').after(html)
+
+var InfoView = Backbone.View.extend({
+    el:'#view',
+    events: {
+        'click .btnHide' : 'hideInfo',
+        'click .btnShow' : 'showInfo'
+    },
+    showInfo: function () {
+        $('.viewport').show()
+    },
+    hideInfo: function () {
+        $('.viewport').hide()
+    }
+})
+var view = new InfoView()
+
+```
+
+构建view模型时，通过 `events` 属性绑定DOM操作，具体表示
+
+```
+EventName DOMelement : function
+```
+
+其中，EventName是事件类型，DOMelement是绑定DOM操作的元素，function是DOM操作回调函数。

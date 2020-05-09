@@ -218,3 +218,7 @@ console.log(dlrb.toJSON())
 // {}
 ```
 
+## Backbone数据模型集合
+
+### 创建数据集合
+

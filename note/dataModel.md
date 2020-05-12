@@ -1,6 +1,6 @@
 ## Backbone数据模型
 
-## 创建模型对象
+### 创建模型对象
 
 ```js
 var man = Backbone.Model.extend({
@@ -14,6 +14,27 @@ var dlrb = new man ()
 ```
 
 `initialize` 是构造函数，创建对象的时候自动执行。
+
+### model本质
+
+控制台打印出model，显示model是一个对象
+
+实例化后的数据存在attributes属性中
+
+```js
+attributes: {name: "高雯", drama: "克拉恋人", score: 80}
+```
+
+model自带的属性方法保存在proto中
+
+```js
+__proto___ :
+	__proto___:
+		on :
+		listenTo:
+		off:
+		......
+```
 
 ### set、get、escape
 
@@ -287,9 +308,30 @@ for (var i = 0; i < dlrbList.models.length; i++){
 }
 ```
 
+### collection本质
+
+collection本质是一个对象
+
+collection属性models是一个数组，数组中保存了实例化的各种model
+
+```
+models: (3) [child, child, child]
+```
+
+collection的各种方法保存在proto中
+
+```
+__proto___ :
+	__proto___:
+		on :
+		listenTo:
+		off:
+		......
+```
+
 ### 定义集合方法
 
-`Collection` 可以使用 `underscore`提供的方法！
+`collection` 可以使用 `underscore`提供的方法！
 
 此处的 `filterFun` 就是自定义的模型方法。
 
@@ -311,5 +353,14 @@ var collection = Backbone.Collection.extend({
         })
     }
 })
+```
+
+应用 ——
+
+```js
+var filDlrbList = dlrbList.filterFun()
+for (var i = 0; i < filDlrbList.length; i++){
+    console.log(filDlrbList[i].toJSON())
+}
 ```
 

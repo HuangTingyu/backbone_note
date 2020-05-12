@@ -31,8 +31,9 @@ var dlrbModels = [
     }
 ]
 var dlrbList = new collection (dlrbModels)
+console.log(dlrbList)
 // var dlrbList = new Backbone.Collection(dlrbModels, {
-//     model:model
+    // model:model
 // })
 var filDlrbList = dlrbList.filterFun()
 for (var i = 0; i < filDlrbList.length; i++){

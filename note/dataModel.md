@@ -222,3 +222,94 @@ console.log(dlrb.toJSON())
 
 ### 创建数据集合
 
+#### 方法1
+
+首先，定义model，然后定义collection，collection由model组成。
+
+```
+var model = Backbone.Model.extend({
+    defaults:{
+        name:"",
+        drama:"",
+        score:""
+    }
+})
+var collection = Backbone.Collection.extend({
+    model:model
+})
+```
+
+应用 ——
+
+此处的dlrbModels是模型数据。实例collection后，将该模型数据以参数形式传入，此时模型数据转化成模型对象。
+
+```js
+var dlrbModels = [
+    {
+        name:"高雯",
+        drama:"克拉恋人",
+        score:80
+    },
+    {
+        name:"唐楠楠",
+        drama:"傲娇与偏见",
+        score:70
+    },
+    {
+        name:"凤九",
+        drama:"十里桃花",
+        score:90
+    }
+]
+var dlrbList = new collection (dlrbModels)
+for (var i = 0; i < dlrbList.models.length; i++){
+    console.log(dlrbList.models[i].toJSON())
+}
+```
+
+#### 方法2
+
+定义collection时，顺便将模型数据 `dlrbModels` 传入进行实例化。
+
+```js
+var model = Backbone.Model.extend({
+    defaults:{
+        name:"",
+        drama:"",
+        score:""
+    }
+})
+var dlrbList = new Backbone.Collection(dlrbModels, {
+    model:model
+})
+for (var i = 0; i < dlrbList.models.length; i++){
+    console.log(dlrbList.models[i].toJSON())
+}
+```
+
+### 定义集合方法
+
+`Collection` 可以使用 `underscore`提供的方法！
+
+此处的 `filterFun` 就是自定义的模型方法。
+
+调用集合对象的 `filter` 方法，过滤 score属性大于等于 80 的模型对象，并
+
+```js
+var model = Backbone.Model.extend({
+    defaults:{
+        name:"",
+        drama:"",
+        score:""
+    }
+})
+var collection = Backbone.Collection.extend({
+    model:model,
+    filterFun: function () {
+        return this.filter(function (model){
+            return model.get("score") >= 80
+        })
+    }
+})
+```
+

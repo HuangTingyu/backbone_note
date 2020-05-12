@@ -1,12 +1,17 @@
-var dlrb = Backbone.Model.extend({
+var model = Backbone.Model.extend({
     defaults:{
         name:"",
         drama:"",
         score:""
     }
 })
-var dlrbCollection = Backbone.Collection.extend({
-    model:dlrb
+var collection = Backbone.Collection.extend({
+    model:model,
+    filterFun: function () {
+        return this.filter(function (model){
+            return model.get("score") >= 80
+        })
+    }
 })
 var dlrbModels = [
     {
@@ -25,7 +30,11 @@ var dlrbModels = [
         score:90
     }
 ]
-var dlrbList = new dlrbCollection (dlrbModels)
-for (var i = 0; i < dlrbList.models.length; i++){
-    console.log(dlrbList.models[i].toJSON())
+var dlrbList = new collection (dlrbModels)
+// var dlrbList = new Backbone.Collection(dlrbModels, {
+//     model:model
+// })
+var filDlrbList = dlrbList.filterFun()
+for (var i = 0; i < filDlrbList.length; i++){
+    console.log(filDlrbList[i].toJSON())
 }

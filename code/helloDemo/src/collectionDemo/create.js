@@ -37,5 +37,6 @@ console.log(dlrbList)
 // })
 var filDlrbList = dlrbList.filterFun()
 for (var i = 0; i < filDlrbList.length; i++){
-    console.log(filDlrbList[i].toJSON())
+    // console.log(filDlrbList[i].toJSON())
+    console.log(filDlrbList[i].attributes)
 }

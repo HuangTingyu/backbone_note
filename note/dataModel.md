@@ -169,6 +169,24 @@ console.log(dlrb.get('name') + '最新动态' + dlrb.get('news'))
 // 迪丽热巴·迪力木拉提最新动态5月10号极限挑战
 ```
 
+### 获取属性
+
+获取models的属性有两种方法
+
+```
+model.toJSON()
+```
+
+toJSON返回的是js对象而非JSON字符串！不要被命名误导！
+
+或者
+
+```
+model.attributes
+```
+
+注意，这两个方法返回的都是JS对象。
+
 ### 开启数据验证
 
 ```js

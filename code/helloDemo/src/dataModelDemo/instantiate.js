@@ -1,4 +1,4 @@
-var man = Backbone.Model.extend({
+var model = Backbone.Model.extend({
     initialize: function () {
         this.on('invalid', function (model, error){
             console.log(error)
@@ -18,7 +18,7 @@ var man = Backbone.Model.extend({
         }
     }
 })
-var dlrb = new man ({
+var dlrb = new model ({
     name:"迪丽热巴·迪力木拉提",
     birthday:"920603",
     business:"<嘉行传媒>"

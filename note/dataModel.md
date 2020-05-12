@@ -3,12 +3,12 @@
 ### 创建模型对象
 
 ```js
-var man = Backbone.Model.extend({
+var model = Backbone.Model.extend({
     initialize: function(){
         console.log('您new了一个对象')
     }
 })
-var dlrb = new man ()
+var dlrb = new model ()
 // 输出
 // 您new了一个对象
 ```
@@ -41,7 +41,7 @@ __proto___ :
 set赋值，get获取值
 
 ```js
-var man = Backbone.Model.extend({
+var model = Backbone.Model.extend({
     initialize: function(){
         console.log('您new了一个对象')
     },
@@ -51,7 +51,7 @@ var man = Backbone.Model.extend({
         business:""
     }
 })
-var dlrb = new man ()
+var dlrb = new model ()
 dlrb.set({
     name:"迪丽热巴·迪力木拉提",
     birthday:"19920603",
@@ -76,7 +76,7 @@ console.log(dlrb.escape('name') + '的经纪公司' + dlrb.escape('business'))
 举例 ——
 
 ```js
-var man = Backbone.Model.extend({
+var model = Backbone.Model.extend({
     initialize: function(){
         console.log('您new了一个对象')
     },
@@ -90,7 +90,7 @@ var man = Backbone.Model.extend({
         console.log(this.escape('name') + '的经纪公司' + this.escape('business'))
     }
 })
-var dlrb = new man ()
+var dlrb = new model ()
 dlrb.set({
     name:"迪丽热巴·迪力木拉提",
     birthday:"19920603",
@@ -103,7 +103,7 @@ dlrb.printLog()
 ### 监听数据
 
 ```js
-var man = Backbone.Model.extend({
+var model = Backbone.Model.extend({
     initialize: function(){
         console.log('您new了一个对象')
         this.on("change:name", function () {
@@ -120,7 +120,7 @@ var man = Backbone.Model.extend({
         business:""
     }
 })
-var dlrb = new man ()
+var dlrb = new model ()
 dlrb.set({
     name:"迪丽热巴·迪力木拉提",
     birthday:"19920603",
@@ -141,14 +141,14 @@ dlrb.set({
 没有设置的值为undefined
 
 ```js
-var man = Backbone.Model.extend({
+var model = Backbone.Model.extend({
     defaults:{
         name:"",
         birthday:"",
         business:""
     }
 })
-var dlrb = new man ({
+var dlrb = new model ({
     name:"迪丽热巴·迪力木拉提",
     birthday:"920603",
     business:"<嘉行传媒>"
@@ -190,7 +190,7 @@ model.attributes
 ### 开启数据验证
 
 ```js
-var man = Backbone.Model.extend({
+var model = Backbone.Model.extend({
     initialize: function () {
         this.on('invalid', function (model, error){
             console.log(error)
@@ -210,7 +210,7 @@ var man = Backbone.Model.extend({
         }
     }
 })
-var dlrb = new man ({
+var dlrb = new model ({
     name:"迪丽热巴·迪力木拉提",
     birthday:"920603",
     business:"<嘉行传媒>"

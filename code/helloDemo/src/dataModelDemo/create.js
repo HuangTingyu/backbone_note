@@ -1,4 +1,4 @@
-var man = Backbone.Model.extend({
+var model = Backbone.Model.extend({
     initialize: function(){
         console.log('您new了一个对象')
         this.on("change:name", function () {
@@ -19,14 +19,14 @@ var man = Backbone.Model.extend({
         console.log(this.escape('name') + '的经纪公司' + this.escape('business'))
     }
 })
-// var dlrb = new man ()
-// dlrb.set({
-//     name:"迪丽热巴·迪力木拉提",
-//     birthday:"19920603",
-//     business:"<嘉行传媒>"
-// })
+var dlrb = new model ()
+dlrb.set({
+    name:"迪丽热巴·迪力木拉提",
+    birthday:"19920603",
+    business:"<嘉行传媒>"
+})
 
-// dlrb.printLog()
+dlrb.printLog()
 
-// console.log(dlrb.get('name') + '的经纪公司' + dlrb.get('business'))
-// console.log(dlrb.escape('name') + '的经纪公司' + dlrb.escape('business'))
+console.log(dlrb.get('name') + '的经纪公司' + dlrb.get('business'))
+console.log(dlrb.escape('name') + '的经纪公司' + dlrb.escape('business'))

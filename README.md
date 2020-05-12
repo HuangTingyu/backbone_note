@@ -98,7 +98,7 @@ backbone内部，有一整套与服务器数据自动同步的机制，通过这
 
 详细见 —— `note\Underscore`
 
-## backbone事件方法
+### backbone事件方法
 
 详细见 —— `note\eventBind`
 

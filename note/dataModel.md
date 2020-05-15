@@ -257,6 +257,126 @@ console.log(dlrb.toJSON())
 // {}
 ```
 
+### 与服务器端交互
+
+服务端相关代码
+
+`koaDemo\koaService\routes\index.js`
+
+```js
+router.get('/modelGet', async (ctx, next) => {
+  const query = ctx.query
+  ctx.body = {
+    title: 'koa2 modelGet',
+    query: query,
+  }
+})
+
+router.post('/modelPost', async (ctx, next) => {
+  const body = ctx.request.body
+  ctx.body = {
+    title: 'koa2 modelPost',
+    body: body,
+  }
+})
+```
+
+### get请求
+
+请求方法 `model.fetch`
+
+`helloDemo\src\dataModelDemo\service.js`
+
+`url` 后面跟的是请求地址
+
+```js
+var modelGetService = Backbone.Model.extend({
+    initialize: function () {
+        console.log('initialize')
+    },
+    url:"http://localhost:3000/modelGet?uid=920603&name=迪丽热巴"
+})
+var modelInst = new modelGetService ()
+modelInst.fetch({
+    success: function (model, response) {
+        console.log('3000 modelGet response')
+        console.log(modelInst.toJSON())
+    },
+    error: function (err) {
+        console.error(err)
+    }
+})
+```
+
+输出
+
+```
+initialize
+```
+
+```
+3000 modelGet response
+```
+
+```
+{
+	title: "koa2 modelGet",
+	query: {uid: "920603", name: "迪丽热巴"}
+}
+```
+
+### post请求
+
+请求方法 `model.save`
+
+`helloDemo\src\dataModelDemo\service.js`
+
+```js
+var modelPostService = Backbone.Model.extend({
+    initialize: function () {
+        console.log('initialize')
+    },
+    defaults: {
+        uid: '',
+        name: '',
+    },
+    url:"http://localhost:3000/modelPost"
+})
+var modelPostInst = new modelPostService ()
+modelPostInst.save({
+    uid: '920603',
+    name: '迪丽热巴·迪力木拉提'
+}, {
+    success: function (model, response) {
+        console.log('response',response)
+        console.log(model.toJSON())
+    }
+})
+```
+
+输出
+
+```
+initialize
+```
+
+```js
+response
+{
+  title: "koa2 modelPost",
+  body: {uid: "920603", name: "迪丽热巴·迪力木拉提"}
+}
+```
+
+```js
+uid: "920603",
+name: "迪丽热巴·迪力木拉提",
+{
+  title: "koa2 modelPost",
+  body: {uid: "920603", name: "迪丽热巴·迪力木拉提"}
+}
+```
+
 ## Backbone数据模型集合
 
 ### 创建数据集合

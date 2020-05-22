@@ -28,15 +28,19 @@ var dlrbModels = [
         name:"凤九",
         drama:"十里桃花",
         score:90
+    },{
+        name:"周放",
+        drama:"爱情高级定制",
+        score:88
     }
 ]
 var dlrbList = new collection (dlrbModels)
-console.log(dlrbList)
+// console.log(dlrbList)
 // var dlrbList = new Backbone.Collection(dlrbModels, {
     // model:model
 // })
-var filDlrbList = dlrbList.filterFun()
-for (var i = 0; i < filDlrbList.length; i++){
+// var filDlrbList = dlrbList.filterFun()
+// for (var i = 0; i < filDlrbList.length; i++){
     // console.log(filDlrbList[i].toJSON())
-    console.log(filDlrbList[i].attributes)
-}
+//     console.log(filDlrbList[i].attributes)
+// }

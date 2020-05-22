@@ -418,12 +418,17 @@ var dlrbModels = [
         name:"凤九",
         drama:"十里桃花",
         score:90
+    },{
+        name:"周放",
+        drama:"爱情高级定制",
+        score:88
     }
 ]
 var dlrbList = new collection (dlrbModels)
 for (var i = 0; i < dlrbList.models.length; i++){
     console.log(dlrbList.models[i].toJSON())
 }
+// 输出dlrbModels里面的元素
 ```
 
 #### 方法2
@@ -444,6 +449,7 @@ var dlrbList = new Backbone.Collection(dlrbModels, {
 for (var i = 0; i < dlrbList.models.length; i++){
     console.log(dlrbList.models[i].toJSON())
 }
+// 输出dlrbModels里面的元素
 ```
 
 ### collection本质
@@ -453,7 +459,7 @@ collection本质是一个对象
 collection属性models是一个数组，数组中保存了实例化的各种model
 
 ```
-models: (3) [child, child, child]
+models: (4) [child, child, child, child]
 ```
 
 collection的各种方法保存在proto中
@@ -500,5 +506,59 @@ var filDlrbList = dlrbList.filterFun()
 for (var i = 0; i < filDlrbList.length; i++){
     console.log(filDlrbList[i].toJSON())
 }
+// 输出score大于80的元素
+// {name: "高雯", drama: "克拉恋人", score: 80}
+// {name: "凤九", drama: "十里桃花", score: 90}
+```
+
+### collection方法
+
+### 删除
+
+- shift 删除第一个model
+- pop 删除最后的model
+- remove 删除某个model
+
+```js
+var dlrbList = new collection (dlrbModels)
+// 删除第1个model
+dlrbList.shift()
+// 删除第3个model
+dlrbList.remove(dlrbList.models[2])
+// 删除最后一个model
+dlrbList.pop()
+for(var i = 0; i < dlrbList.models.length; i++){
+    console.log(dlrbList.models[i].toJSON())
+}
+// 输出
+// {name: "唐楠楠", drama: "傲娇与偏见", score: 70}
+```
+
+### 插入
+
+- unshift 开头插入
+- push 尾部插入
+- add 指定位置插入
+
+```js
+// 头部插入
+dlrbList.unshift(newModels[0])
+// 第二个model前面插入
+dlrbList.add (newModels[0], { at : 2 })
+// 最后插入
+dlrbList.push(newModels[0])
+```
+
+输出
+
+```
+{name: "凌凌七", drama: "一千零一夜", score: 75}
+{name: "高雯", drama: "克拉恋人", score: 80}
+{name: "凌凌七", drama: "一千零一夜", score: 75}
+{name: "唐楠楠", drama: "傲娇与偏见", score: 70}
+{name: "凤九", drama: "十里桃花", score: 90}
+{name: "周放", drama: "爱情高级定制", score: 88}
+{name: "凌凌七", drama: "一千零一夜", score: 75}
+{name: "凌凌七", drama: "一千零一夜", score: 75}
 ```
 

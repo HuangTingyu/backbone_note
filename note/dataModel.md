@@ -559,6 +559,5 @@ dlrbList.push(newModels[0])
 {name: "凤九", drama: "十里桃花", score: 90}
 {name: "周放", drama: "爱情高级定制", score: 88}
 {name: "凌凌七", drama: "一千零一夜", score: 75}
-{name: "凌凌七", drama: "一千零一夜", score: 75}
 ```
 

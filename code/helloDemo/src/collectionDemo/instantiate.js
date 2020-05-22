@@ -10,24 +10,28 @@ var collection = Backbone.Collection.extend({
 })
 var dlrbModels = [
     {
+        code: 6058496,
         name:"高雯",
         drama:"克拉恋人",
         score:80
     },
     {
+        code: 6857276,
         name:"唐楠楠",
         drama:"傲娇与偏见",
         score:70
     },
-    {
+    {            
+        code: 6488862,
         name:"凤九",
         drama:"十里桃花",
         score:90
     },{
+        code: 11743112,
         name:"周放",
         drama:"爱情高级定制",
         score:88
-    }
+    },
 ]
 var newModels = [
     {
@@ -49,9 +53,9 @@ var dlrbList = new collection (dlrbModels)
 // dlrbList.shift()
 // dlrbList.remove(dlrbList.models[2])
 // dlrbList.pop()
-dlrbList.unshift(newModels[0])
-dlrbList.add (newModels[0], { at : 2 })
-dlrbList.push(newModels[0])
+// dlrbList.unshift(newModels[0])
+// dlrbList.add (newModels[0], { at : 2 })
+// dlrbList.push(newModels[0])
 for(var i = 0; i < dlrbList.models.length; i++){
     console.log(dlrbList.models[i].toJSON())
 }

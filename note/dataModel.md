@@ -511,7 +511,7 @@ for (var i = 0; i < filDlrbList.length; i++){
 // {name: "凤九", drama: "十里桃花", score: 90}
 ```
 
-### collection方法
+### collection函数
 
 ### 删除
 

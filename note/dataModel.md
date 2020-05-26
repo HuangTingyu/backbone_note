@@ -421,7 +421,7 @@ var dlrbModels = [
     },{
         name:"周放",
         drama:"爱情高级定制",
-        score:88
+        score:80
     }
 ]
 var dlrbList = new collection (dlrbModels)
@@ -557,7 +557,70 @@ dlrbList.push(newModels[0])
 {name: "凌凌七", drama: "一千零一夜", score: 75}
 {name: "唐楠楠", drama: "傲娇与偏见", score: 70}
 {name: "凤九", drama: "十里桃花", score: 90}
-{name: "周放", drama: "爱情高级定制", score: 88}
+{name: "周放", drama: "爱情高级定制", score: 80}
 {name: "凌凌七", drama: "一千零一夜", score: 75}
+```
+
+### 查找
+
+#### 根据ID查找
+
+```js
+var model = Backbone.Model.extend({
+    defaults:{
+        name:"",
+        drama:"",
+        score:""
+    },
+    idAttribute:"code"
+})
+var collection = Backbone.Collection.extend({
+    model:model
+})
+var0dlrbModels = [
+    {
+        code: 6058496,
+        name:"高雯",
+        drama:"克拉恋人",
+        score:80
+    },
+    ......
+]
+var dlrbList = new collection (dlrbModels)
+var findIdModel = dlrbList.get(11743112)
+// console.log(findIdModel.toJSON())
+// 输出 ID 为11743112的模型
+// {name: "周放", drama: "爱情高级定制", score: 80, code: 11743112}
+```
+
+#### 根据索引号查找
+
+```
+var findIndexModel = dlrbList.at(0)
+// 输出
+// {name: "高雯", drama: "克拉恋人", score: 80, code: 6058496}
+```
+
+#### 根据属性值和属性名称
+
+find({ key : value }, true) 返回属性值和属性名称相匹配的第一个Model，返回值只有一个，参数默认值false
+
+findWhere 同上
+
+find( { key : value }, false) 返回属性值和属性名称相匹配的Model，返回值是数组，参数默认值false
+
+```
+var find0Model = dlrbList.findWhere({ score : 80 })
+var find1Model = dlrbList.where({ score : 80 }, true)
+var find2Model = dlrbList.where({ score : 80 })
+console.log( find0Model.toJSON() )
+// {name: "高雯", drama: "克拉恋人", score: 80, code: 6058496}
+console.log( find1Model.toJSON() )
+// {name: "高雯", drama: "克拉恋人", score: 80, code: 6058496}
+for( var i = 0; i < find2Model.length; i++ ){
+    console.log( find2Model[i].toJSON() )
+}
+// {name: "高雯", drama: "克拉恋人", score: 80, code: 6058496}
+// {name: "周放", drama: "爱情高级定制", score: 80, code: 11743112}
 ```
 

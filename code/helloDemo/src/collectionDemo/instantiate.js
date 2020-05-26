@@ -67,8 +67,8 @@ var findIndexModel = dlrbList.at(0)
 var find0Model = dlrbList.findWhere({ score : 80 })
 var find1Model = dlrbList.where({ score : 80 }, true)
 var find2Model = dlrbList.where({ score : 80 })
-console.log( find0Model.toJSON() )
-console.log( find1Model.toJSON() )
-for( var i = 0; i < find2Model.length; i++ ){
-    console.log( find2Model[i].toJSON() )
-}
+// console.log( find0Model.toJSON() )
+// console.log( find1Model.toJSON() )
+// for( var i = 0; i < find2Model.length; i++ ){
+    // console.log( find2Model[i].toJSON() )
+// }

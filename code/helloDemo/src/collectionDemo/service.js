@@ -1,8 +1,8 @@
 var model = Backbone.Model.extend({
     defaults:{
-        name:"",
-        drama:"",
-        score:""
+        title:"",
+        query:"",
+        data:[]
     }
 })
 

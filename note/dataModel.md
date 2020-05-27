@@ -281,7 +281,7 @@ router.post('/modelPost', async (ctx, next) => {
 })
 ```
 
-### get请求
+### fetch(get请求)
 
 请求方法 `model.fetch`
 
@@ -325,7 +325,7 @@ initialize
 }
 ```
 
-### post请求
+### save(post请求)
 
 请求方法 `model.save`
 
@@ -404,25 +404,29 @@ var collection = Backbone.Collection.extend({
 
 ```js
 var dlrbModels = [
-    {
-        name:"高雯",
-        drama:"克拉恋人",
-        score:80
-    },
-    {
-        name:"唐楠楠",
-        drama:"傲娇与偏见",
-        score:70
-    },
-    {
-        name:"凤九",
-        drama:"十里桃花",
-        score:90
-    },{
-        name:"周放",
-        drama:"爱情高级定制",
-        score:80
-    }
+  {
+      code: 6058496,
+      name:"高雯",
+      drama:"克拉恋人",
+      score:80
+  },
+  {
+      code: 6857276,
+      name:"唐楠楠",
+      drama:"傲娇与偏见",
+      score:70
+  },
+  {            
+      code: 6488862,
+      name:"凤九",
+      drama:"十里桃花",
+      score:90
+  },{
+      code: 11743112,
+      name:"周放",
+      drama:"爱情高级定制",
+      score:80
+  },
 ]
 var dlrbList = new collection (dlrbModels)
 for (var i = 0; i < dlrbList.models.length; i++){
@@ -438,6 +442,7 @@ for (var i = 0; i < dlrbList.models.length; i++){
 ```js
 var model = Backbone.Model.extend({
     defaults:{
+        code:""
         name:"",
         drama:"",
         score:""
@@ -484,6 +489,7 @@ __proto___ :
 ```js
 var model = Backbone.Model.extend({
     defaults:{
+        code:"",
         name:"",
         drama:"",
         score:""
@@ -577,7 +583,7 @@ var model = Backbone.Model.extend({
 var collection = Backbone.Collection.extend({
     model:model
 })
-var0dlrbModels = [
+var dlrbModels = [
     {
         code: 6058496,
         name:"高雯",
@@ -595,7 +601,7 @@ var findIdModel = dlrbList.get(11743112)
 
 #### 根据索引号查找
 
-```
+```js
 var findIndexModel = dlrbList.at(0)
 // 输出
 // {name: "高雯", drama: "克拉恋人", score: 80, code: 6058496}
@@ -609,7 +615,7 @@ findWhere 同上
 
 find( { key : value }, false) 返回属性值和属性名称相匹配的Model，返回值是数组，参数默认值false
 
-```
+```js
 var find0Model = dlrbList.findWhere({ score : 80 })
 var find1Model = dlrbList.where({ score : 80 }, true)
 var find2Model = dlrbList.where({ score : 80 })
@@ -622,5 +628,132 @@ for( var i = 0; i < find2Model.length; i++ ){
 }
 // {name: "高雯", drama: "克拉恋人", score: 80, code: 6058496}
 // {name: "周放", drama: "爱情高级定制", score: 80, code: 11743112}
+```
+
+### 服务器交互
+
+#### fetch (get请求)
+
+#### 服务端
+
+data 的内容搜索 - `dlrbModels`
+
+```js
+router.get('/collectionGet', async (ctx, next) => {
+  ctx.body = data
+})
+```
+
+执行顺序 initialize - reset - success ，接收到的数据是一个数组。
+
+```js
+var modelGet = Backbone.Model.extend({
+    defaults:{
+        code:"",
+        title:"",
+        query:"",
+        data:[]
+    }
+})
+
+var collectionGet = Backbone.Collection.extend({
+    initialize : function () {
+        console.log('init')
+        this.on("reset", function (render) {
+            console.log('reset')
+            for (var i = 0; i < render.models.length; i++){
+                console.log(render.models[i].toJSON())
+            }
+        })
+    },
+    model: modelGet,
+    url:"http://localhost:3000/collectionGet"
+})
+
+var dlrbList = new collectionGet ()
+dlrbList.fetch({
+    reset: true,
+    success: function (collection, resp, options) {
+        console.log('success')
+        for (var i = 0; i < collection.models.length; i++) {
+            console.log(collection.models[i].toJSON())
+        }
+    }
+})
+```
+
+输出
+
+```
+init
+reset
+{code: 6058496, name: "高雯", drama: "克拉恋人", score: 80}
+......
+success
+{code: 6058496, name: "高雯", drama: "克拉恋人", score: 80}
+......
+```
+
+#### create(post请求)
+
+#### 服务端
+
+```js
+router.post('/collectionPost', async (ctx, next) => {
+  const body = ctx.request.body
+  ctx.body = {
+    title: 'koa2 modelPost',
+    body: body,
+    code:"8932678"
+  }
+})
+```
+
+create 第一个参数 - 向服务端发送的参数，如果第一个参数传入 {} ，就会把默认model带过去
+
+​	    第二个参数 - success 或者 error 回调
+
+```js
+var modelPost = Backbone.Model.extend({
+    defaults:{
+        code:"",
+        name:"",
+        drama:"",
+        score:""
+    } 
+})
+
+var collectionPost = Backbone.Collection.extend({
+    initialize: function () {
+        this.on("add",function(model, response, options) {
+            console.log('add')
+            console.log(model.toJSON())
+        })
+    },
+    model: modelPost,
+    url: "http://localhost:3000/collectionPost"
+})
+
+var dlrbList = new collectionPost ()
+dlrbList.create({
+    code:"10001",
+    name:"凌凌七",
+    drama:"一千零一夜",
+    score:75
+},{
+    wait: true,
+    success: function (model, response) {
+        console.log(model.toJSON())
+    }
+  })
+```
+
+输出
+
+```
+add
+{code: "8932678", name: "凌凌七", drama: "一千零一夜", score: 75, title: "koa2 modelPost", …}
+success
+{code: "8932678", name: "凌凌七", drama: "一千零一夜", score: 75, title: "koa2 modelPost", …}
 ```
 

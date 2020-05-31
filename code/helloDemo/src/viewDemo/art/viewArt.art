@@ -1,0 +1,5 @@
+{{ if score > 80 }}
+    <div>优秀</div>
+ {{else}}
+    <div>及格</div>
+{{/if}}

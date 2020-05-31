@@ -47,3 +47,31 @@ var test = new testview ()
 test.render("迪丽热巴0603生日快乐")
 ```
 
+### 传入collection数据
+
+`new view({ collection: 实例化的collection })`
+
+1.实例化collection
+
+2.定义view
+
+3.将实例化的collection传入
+
+```
+var collection = Backbone.Collection.extend({
+    model:model
+})
+var dlrbList = new collection (dlrbModels)
+var view = Backbone.View.extend({
+    el: '#root',
+    render: function () {
+        var list = this.collection.models
+        for ( var i = 0; i < list.length; i++) {
+            this.el.innerHTML += (JSON.stringify(list[i]) + "</br>")
+        }
+    }
+})
+var dlrbView = new view({ collection: dlrbList })
+dlrbView.render()
+```
+

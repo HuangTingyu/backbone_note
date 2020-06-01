@@ -2,3 +2,11 @@
     font-size: 12px;
     color: pink;
 }
+.changed{
+    border: solid 1px #555;
+}
+.btn{
+    background-color: #eee;
+    border: none;
+    outline: none;
+}

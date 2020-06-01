@@ -1,3 +1,4 @@
 // require('./basis')
 // require('./viewCollection')
-require('./viewArt')
+// require('./viewArt')
+require('./viewEvent')

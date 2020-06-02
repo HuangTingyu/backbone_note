@@ -1,5 +1,7 @@
 .table{
     display: table;
+    border: solid;
+    margin:0 auto;
 }
 .tbRow{
     display: table-row;
@@ -7,4 +9,19 @@
 .tbCell{
     display: table-cell;
     width: 50px;
+}
+.validate{
+    margin-top:20px;
+}
+ul{
+    list-style: none; 
+    padding: 0px; 
+    margin: 0px; 
+}
+li{
+    display: grid;
+    width:300px;
+    margin-top:10px;
+    grid-template-columns: 30% 70%;
+    justify-items: center;
 }

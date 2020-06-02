@@ -6,4 +6,10 @@
             <div class="tbCell">drama</div>
         </div>
     </div>
+    <ul class="validate">
+        <li><span>编号</span><input type="text" /></li>
+        <li><span>姓名</span><input type="text" /></li>
+        <li><span>drama</span><input type="text" /></li>
+        <li><button id="btn">提交</button></li>
+    </ul>
 </div>

@@ -2,6 +2,6 @@
     <div id='box'>迪丽热巴0603生日快乐</div>
     <button class="btn btn_a">切换样式</button>
     <button class="btn btn_b">取消绑定</button>
-    <button class="btn btn_c" onclick="dlrbv.rebind()">重新绑定</button>
+    <button class="btn btn_c">重新绑定</button>
 
 </div>

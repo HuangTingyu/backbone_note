@@ -1,6 +1,7 @@
 require('../../css/viewBasis.css')
 var html = require('./art/viewEvent.art')
 var dlrbv = null
+var self = null
 var view = Backbone.View.extend({
     el: $("body"),
     initialize: function () {
@@ -24,10 +25,12 @@ var view = Backbone.View.extend({
     unbind: function () {
         console.log("取消绑定")
         this.undelegateEvents()
+        self = this
+        $('.btn_c').on('click', this.rebind)
     },
     rebind: function () {
         console.log("重新绑定")
-        this.delegateEvents(this.events)
+        self.delegateEvents(this.events)
     }
 })
 dlrbv = new view ()

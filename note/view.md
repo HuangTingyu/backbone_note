@@ -75,3 +75,99 @@ var dlrbView = new view({ collection: dlrbList })
 dlrbView.render()
 ```
 
+### 模板
+
+`helloDemo\src\viewDemo\art\viewArt.art`
+
+```html
+{{ if score > 80 }}
+    <div>优秀</div>
+ {{else}}
+    <div>及格</div>
+{{/if}
+```
+
+`helloDemo\src\viewDemo\viewArt.js`
+
+```js
+var render = require('./art/viewArt.art')
+var view = Backbone.View.extend({
+    el: $("#root"),
+    initialize: function () {
+        console.log('init')
+    },
+    render: function (score) {
+        this.$el.html(render({score: score}))
+    }
+})
+
+var dlrbView = new view ()
+dlrbView.render(80)
+```
+
+页面显示 - 及格
+
+### 事件绑定
+
+`helloDemo\src\viewDemo\art\viewEvent.art`
+
+```html
+<div class="wrap">
+    <div id='box'>迪丽热巴0603生日快乐</div>
+    <button class="btn btn_a">切换样式</button>
+    <button class="btn btn_b">取消绑定</button>
+    <button class="btn btn_c">重新绑定</button>
+
+</div>
+
+```
+
+`helloDemo\src\viewDemo\viewEvent.js`
+
+```js
+require('../../css/viewBasis.css')
+var html = require('./art/viewEvent.art')
+var dlrbv = null
+var self = null
+var view = Backbone.View.extend({
+    el: $("body"),
+    initialize: function () {
+        this.render()
+    },
+    render: function () {
+        this.$el.append(html())
+    },
+    events: {
+        'click div#box' : 'togcls',
+        'click button.btn_a': 'tog',
+        'click button.btn_b': 'unbind',
+        'click button.btn_c': 'rebind'
+    },
+    togcls: function () {
+        $("#box").toggleClass("changed")
+    },
+    tog: function () {
+        $("#box").toggle()
+    },
+    unbind: function () {
+        console.log("取消绑定")
+        this.undelegateEvents()
+        self = this
+        $('.btn_c').on('click', this.rebind)
+    },
+    rebind: function () {
+        console.log("重新绑定")
+        self.delegateEvents(this.events)
+    }
+})
+dlrbv = new view ()
+```
+
+页面显示 -
+
+出现三个按钮，点击按钮A，文字消失，再点击出现。
+
+点击按钮B，解绑所有事件。
+
+点击按钮C，重新绑定所有事件。
+

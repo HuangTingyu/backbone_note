@@ -1,0 +1,10 @@
+.table{
+    display: table;
+}
+.tbRow{
+    display: table-row;
+}
+.tbCell{
+    display: table-cell;
+    width: 50px;
+}

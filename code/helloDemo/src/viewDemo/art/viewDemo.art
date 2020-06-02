@@ -1,0 +1,9 @@
+<div class="wrap">
+    <div class="table">
+        <div class="tbRow">
+            <div class="tbCell">编号</div>
+            <div class="tbCell">姓名</div>
+            <div class="tbCell">drama</div>
+        </div>
+    </div>
+</div>

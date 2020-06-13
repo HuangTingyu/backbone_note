@@ -171,3 +171,55 @@ dlrbv = new view ()
 
 点击按钮C，重新绑定所有事件。
 
+### 一个简单的页面
+
+详见 `helloDemo\src\viewDemo\viewDemo.js`
+
+关键代码
+
+```js
+var collection = Backbone.Collection.extend({
+    model:model,
+    initialize: function (model, options) {
+        this.on('add', options.view.showModel)
+    }
+})
+
+var view = Backbone.View.extend({
+    el: $('#root'),
+    initialize: function () {
+        this.render()
+        this.list = new collection(null, { view: this })
+    },
+    events: {
+        'click #btn': 'addModel'
+    },
+    render: function () {
+        this.$el.append(render())
+    },
+    addModel: function () {
+        var dlrbM = new model ({
+            code: $('.code').val(),
+            name: $('.name').val(),
+            drama: $('.drama').val(),
+            score: $('score').val()
+        })
+        this.list.add(dlrbM)
+    },
+    showModel: function (model) {
+        $('.table').append(renderTab(model.toJSON()))
+    }
+})
+```
+
+其中，collection和view进行绑定如下。
+
+```js
+this.on('add', options.view.showModel)
+```
+
+这意味着，当collection中加入model的时候，将执行回调函数，也就是 view 里面的showModel
+
+add操作执行完之后，会将新添加的model作为参数传给回调函数。
+
+参见backbone英文文档。

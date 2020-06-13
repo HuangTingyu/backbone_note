@@ -9,6 +9,7 @@
 .tbCell{
     display: table-cell;
     width: 50px;
+    text-align: center;
 }
 .validate{
     margin-top:20px;

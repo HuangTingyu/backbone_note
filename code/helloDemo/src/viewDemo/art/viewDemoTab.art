@@ -1,0 +1,6 @@
+<div class="tbRow">
+    <div class="tbCell">{{code}}</div>
+    <div class="tbCell">{{name}}</div>
+    <div class="tbCell">{{drama}}</div>
+    <div class="tbCell">{{score}}</div>
+</div>
